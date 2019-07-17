@@ -452,10 +452,13 @@ function Front(){
 	this.on_pdv_editora = function(nomeEditora){
 		console.log(nomeEditora);
 		h2 = document.createElement("h2");
+		h2.id = "editora_da_livro";
 		h2.innerHTML = '<span style="background: gray; color: white; padding: 0.3em;">{0}</span>'.replace('{0}',nomeEditora);
 
-		titulo = document.body.querySelector("#nome_produto");
-		titulo.appendChild(h2);
+		document.view.delete_editora_pdv();
+
+		detalhes_produto = document.body.querySelector("#detalhes_produto");
+		detalhes_produto.appendChild(h2);
 	}
 	this.pop_img_estoque = function(element){
 		
@@ -530,6 +533,13 @@ function Front(){
 			}
 		}
 		return true;
+	}
+	this.delete_editora_pdv = function(isbn = '#'){
+
+		editora_on_pdv = document.querySelector("#detalhes_produto").querySelector("#editora_da_livro");
+		if(editora_on_pdv){
+			editora_on_pdv.parentElement.removeChild(editora_on_pdv);
+		}
 	}
 } front = new Front(); document.view = new Front();
 
