@@ -167,8 +167,6 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 	};
 } s = new sFetch(); document.sF = new sFetch();
 
-
-
 function Back(){
 	this.produtos_lookup_last_list = 0;
 	this.instance = 0;
@@ -195,7 +193,7 @@ function Back(){
 
 
 			return;
-        }
+        } else
         //Store the result in produtos_lookup_last_list
         if(/(https:\/\/www\.bling\.com\.br\/services\/produtos\.lookup\.php\?.*)/.test(xhr.responseURL) ){
 			
@@ -210,7 +208,7 @@ function Back(){
         	if(document.querySelector("ui#ui-id-4")){
         		document.querySelector("ui#ui-id-4").onmouseover(this.process_nota_fiscal_by_mouse);
         	}
-        }
+		}
 	};
 	this.popUp_image_name_isbn_stock = function(element){
 		this.show.popup();
@@ -280,6 +278,19 @@ function Back(){
 		 } 
 		});
 	};
+	this.load_qtd_on_pdv = function(){
+		if(/(.*Frente de Caixa - Bling.*)/.test( document.title )){
+			rodape_produtos = document.querySelector("#rodape_produtos");
+			button = document.createElement("button");
+			button.style = "border:none;outline:none;order:-1;display:flex;align-items:center;padding:0;";
+			button.id = "button_qtd";
+			button.onclick = document.back.get_qtd_on_pdv;
+			button.onmouseover = document.back.get_qtd_on_pdv;
+			button.innerHTML = '<h2 style="background:green;font-size:1.2em;color:white;font-weight:bold;padding:0.5em;border:none;outline:none;margin:0;height:44px;width:74px;z-index:2;">Contar itens</h2>';
+			button.innerHTML += '<div id="qtd" style="font-size:3em;margin-left:-51%;padding:0 0.3em;display:block;z-index:-1;transition-duration: 0.5s;">N</div>';
+			rodape_produtos.appendChild(button);
+		}
+	};
 	this.match_isbn_title_in_list = function( isbn='9788527505925', title='Ego transformado', list = this.produtos_lookup_last_list ){
 		for(let i = 0; i < list.length; i++){
 
@@ -310,7 +321,7 @@ function Back(){
 	this.process_nota_fiscal_popup_by_arrow = function(event){
 		
 		if( /(https:\/\/www\.bling\.com\.br\/pdv.*)/.test(document.URL) ){
-			console.log('HEY HEY HEY');
+			//console.log('HEY HEY HEY');
 		}else{
 			if(event.code == "ArrowDown" || event.code == "ArrowUp" ){
 				//console.log( document.back.get_ui_id_4_focus_number());
@@ -356,12 +367,31 @@ function Back(){
 	this.active_popup_on_ui_id_4 = function(){
 		document.addEventListener("keydown", back.process_nota_fiscal_popup_by_arrow );
 	};
+	this.get_qtd_on_pdv = function(){
+		try{
+			tbody = document.querySelector("#body_produtos>tbody");
+			arrayItens = Array.apply(null,tbody.querySelectorAll("td[data-quantidade]"));
+		}catch(err){
+			document.view.show_qtd_on_pdv("N");
+			return;	
+		}
+
+		result = 0;
+		for (index in arrayItens){
+			innerText = arrayItens[index].innerText;
+			number = parseInt(innerText);
+			if( number > 0 ){
+				result += number;
+			}
+		}
+		document.view.show_qtd_on_pdv(result);
+	};
 	this.process_editora_pdv_request = function(response){
 		document.back.CORE_process_editora_request( response , 'on_pdv_editora' );
-	}
+	};
 	this.process_editora_pop_request = function(response){
 		document.back.CORE_process_editora_request( response , 'pop_editora_product' );
-	}
+	};
 	this.CORE_process_editora_request = function(response, where){
 		s = new sFetch();
 		responseXML = s.strToXML(response);
@@ -380,9 +410,8 @@ function Back(){
 				}
 			}
 		}
-	}
+	};
 } var back = new Back(); document.back = back; back.active_popup_on_ui_id_4();
-
 
 function Front(){
 	this.bd = document.querySelector("body");
@@ -498,6 +527,10 @@ function Front(){
 		deleteBtn = document.querySelector("#delete_button");
 		deleteBtn.innerHTML ='<h2 style="color: white; text-align:center;">{0}</h2>'.replace('{0}',nomeEditora) ;
 	}
+	this.show_qtd_on_pdv = function(n){
+		qtd = document.querySelector("#button_qtd>#qtd");
+		qtd.innerHTML = n;
+	}
 	this.popup = function(isbn = '#'){
 
 		if ( !this.delete_popup(isbn) ){
@@ -541,6 +574,13 @@ function Front(){
 			editora_on_pdv.parentElement.removeChild(editora_on_pdv);
 		}
 	}
+	this.product_green_space_to_click = function(){
+		if(/(.*Produtos - Bling.*)/.test( document.title )){
+			style = document.createElement("style");
+			style.innerHTML = "@media screen and (min-width:992px){.imagem_produto{max-height:350px!important}.box-content #datatable td:first-child,.box-content #datatable th:first-child,.box-content .datatable td:first-child,.box-content .datatable th:first-child{padding-left:40px;background:rgba(63,175,108,1);background:linear-gradient(to right,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%)}}"
+			document.head.appendChild(style);
+		}
+	}
 } front = new Front(); document.view = new Front();
 
 (function() {
@@ -557,7 +597,9 @@ function Front(){
 })();
 
 // Código frente de caixa, nota fiscal e pista
+document.back.load_qtd_on_pdv();
+document.view.product_green_space_to_click();
 style = document.createElement("style");
-style.innerHTML = ".imagem_produto{max-height:350px!important}@media screen and (min-width:992px){.imagem_produto{max-height:350px!important}.box-content #datatable td:first-child,.box-content #datatable th:first-child,.box-content .datatable td:first-child,.box-content .datatable th:first-child{padding-left:40px;background:rgba(63,175,108,1);background:-moz-linear-gradient(left,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%);background:-webkit-gradient(left top,right top,color-stop(0,rgba(63,175,108,1)),color-stop(47%,rgba(63,175,108,1)),color-stop(47%,rgba(63,175,108,0)),color-stop(48%,rgba(63,175,108,0)),color-stop(49%,rgba(255,255,255,0)),color-stop(100%,rgba(255,255,255,0)));background:-webkit-linear-gradient(left,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%);background:-o-linear-gradient(left,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%);background:-ms-linear-gradient(left,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%);background:linear-gradient(to right,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%)}} .without-green td, .without-green th{background:white!important;padding-left:0!important;}";
-style.innerHTML += "#detalhes_produto #nome_produto{display:contents;}#detalhes_produto #datatable,#detalhes_produto .datatable {padding: 0;width: 31%;} #pop_info > img:hover{width:100%!important;} td[alt='Saldo deste depósito não é considerado'], td[alt='Estoque deste depósito não considerado']{display: none;}";
+style.innerHTML = ".imagem_produto{max-height:350px!important} .without-green td, .without-green th{background:white!important;padding-left:0!important;}";
+style.innerHTML += "#detalhes_produto #nome_produto{display:contents;}#detalhes_produto #datatable,#detalhes_produto .datatable {padding: 0;width: 31%;} #pop_info > img:hover{width:100%!important;} td[alt='Saldo deste depósito não é considerado'], td[alt='Estoque deste depósito não considerado']{display: none;}#button_qtd:hover>div#qtd{z-index:0!important;margin-left:0!important;}";
 document.head.appendChild(style);
