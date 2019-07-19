@@ -6,4 +6,4 @@ document.onclick = function(e){
 	}else if(pop){
 		pop.parentElement.removeChild(pop);
 	}
-}
+};
