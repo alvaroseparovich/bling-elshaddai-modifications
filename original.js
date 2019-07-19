@@ -47,6 +47,6 @@ class includes{
 		console.log("Enviroment -> " + document.elshaddai_bling_env);
 	}
 };
-if(document.compiled){
+if(document.compiled){}else{
 	includes.include();
 };
