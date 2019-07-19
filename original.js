@@ -20,8 +20,16 @@ class includes{
 		document.head.appendChild(script);
 		console.log('URL: "' + url + '" -- was added in head')
 	}
+	static append_src_to_head = function(url){
+
+		script = document.createElement("script"); 
+		script.src = url;
+		document.head.appendChild(script);
+
+		console.log('SRC: "' + url + '" -- was added in head')
+	}
 	static include = function(){
-		
+
 		this.append_to_head(this.SFetch);
 		this.append_to_head(this.Back);
 		this.append_to_head(this.Front);
