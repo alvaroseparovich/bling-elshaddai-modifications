@@ -71,13 +71,13 @@ function Back(){
 	};
 	this.process_pop_stock_request = function(response){
 		HTMLStoque = document.sf.processHTMLStoque( document.sf.strToXML( response ) );
-		document.show.pop_stock_product(HTMLStoque);
+		document.view.pop_stock_product(HTMLStoque);
 	};
 	this.process_get_estoque_request = function(str){
 
 		//console.log("process_get_estoque_request(" + str + ")");
 		HTMLStoque = document.sf.processHTMLStoque( document.sf.strToXML( str ) );
-		document.show.on_pdv_estoque(HTMLStoque);
+		document.view.on_pdv_estoque(HTMLStoque);
 	};
 	this.process_price_multiloja_request = function(response){
 
