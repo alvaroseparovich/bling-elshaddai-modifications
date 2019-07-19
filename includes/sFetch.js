@@ -151,4 +151,4 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 			this.getStockById(id);
 		}
 	};
-} document.sF = new sFetch();
+} document.sf = new sFetch();

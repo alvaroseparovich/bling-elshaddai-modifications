@@ -9,7 +9,6 @@ function Back(){
         	//Chamar o Estoque, Chamar preço real e mostrar o desconto
 			        
         	// Get Estoque  ------------------------------------------------------------------------
-        	document.sf = new sFetch();
 	       	responseJson = JSON.parse( xhr.response );
 	       	productId = this.match_isbn_title_in_list(responseJson['codigo'],responseJson['nome']);
 			document.sf.getStockById( productId, this.process_get_estoque_request );
@@ -40,7 +39,7 @@ function Back(){
 		}
 	};
 	this.popUp_image_name_isbn_stock = function(element){
-		this.show.popup();
+		document.view.popup();
 		if(typeof element == "number" || typeof element == "string"){
 			document.sf.getImgById(element, this.process_pop_img_request);
 			document.sf.getStockById(element, this.process_pop_stock_request);
@@ -82,8 +81,7 @@ function Back(){
 	};
 	this.process_price_multiloja_request = function(response){
 
-		sf = new sFetch();
-		f = sf.strToXML(response);
+		f = document.sf.strToXML(response);
 		element = "" + f.querySelector("cmd:nth-child(3n)").innerHTML;
 		element = element.substr( 40 );
 		element = "[" + element.substr( 0, element.length - 5 ) + "]";
@@ -217,8 +215,8 @@ function Back(){
 		document.back.CORE_process_editora_request( response , 'pop_editora_product' );
 	};
 	this.CORE_process_editora_request = function(response, where){
-		s = new sFetch();
-		responseXML = s.strToXML(response);
+		
+		responseXML = document.sf.strToXML(response);
 
 		arrTxt = responseXML.querySelector("cmd:nth-child(90)").innerHTML;
 		arrTxt = arrTxt.substr(24,arrTxt.length-34);
