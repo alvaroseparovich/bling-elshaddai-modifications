@@ -14,7 +14,7 @@ class includes{
 		return xmlHttp.responseText;
 	};
 	static append_to_head = function(url){
-		script = document.createElement("script"); 
+		var script = document.createElement("script"); 
 		script.innerHTML = this.httpGet(url);
 
 		document.head.appendChild(script);
@@ -22,7 +22,7 @@ class includes{
 	}
 	static append_src_to_head = function(url){
 
-		script = document.createElement("script"); 
+		var script = document.createElement("script"); 
 		script.src = url;
 		document.head.appendChild(script);
 
