@@ -4,7 +4,8 @@ archive_list = {
     3: "includes/sFetch.js",
 
     4: "starters/start_watch_mouse.js",
-    5: "starters/start_watch_XMLHttpRequest.js"
+    5: "starters/start_watch_XMLHttpRequest.js",
+    6: "starters/start_style_and_interface.js"
 }
 
 compiled = open("compiled.js","w")
