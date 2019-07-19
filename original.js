@@ -3,9 +3,14 @@
 
 class includes{ 
 	static PATH 	= "https://raw.githubusercontent.com/alvaroseparovich/bling-elshaddai-modifications/" + document.elshaddai_bling_env + "/"; 
-	static Back 	= this.PATH + "includes/back.js";
-	static Front 	= this.PATH + "includes/front.js";
-	static SFetch 	= this.PATH + "includes/sFetch.js";
+	static archives	= {
+		1: "includes/back.js",
+		2: "includes/front.js",
+		3: "includes/sFetch.js",
+	
+		4: "starters/start_watch_mouse.js",
+		5: "starters/start_watch_XMLHttpRequest.js"
+	};
 
 	static httpGet = function(theUrl){
 		var xmlHttp = new XMLHttpRequest();
@@ -30,37 +35,20 @@ class includes{
 	}
 	static include = function(){
 
-		this.append_to_head(this.SFetch);
-		this.append_to_head(this.Back);
-		this.append_to_head(this.Front);
+		for ( var n in this.archives) {
+			if(document.elshaddai_bling_env == "dev"){
+				console.log(this.archives[n]);
+			}
+			this.append_src_to_head(this.PATH + this.archives[n] );
+		}
 
 		console.log("");
 		console.log("Enviroment -> " + document.elshaddai_bling_env);
 	}
-}
-includes.include();
-
-document.onclick = function(e){
-	pop = document.querySelector("#pop_info");
-	if(e.target != pop && e.target.parentElement != pop && e.target.parentElement.parentElement.parentElement.parentElement.parentElement == document.querySelector("#datatable")){
-		console.log("This is the element");
-		document.back.process_clicked_item(e.target.parentElement);
-	}else if(pop){
-		pop.parentElement.removeChild(pop);
-	}
 };
-(function() {
-
-    var origOpen = XMLHttpRequest.prototype.open;
-
-    XMLHttpRequest.prototype.open = function() {
-        this.addEventListener('load', function() {
-        	document.back.process(this);
-        	//console.log("capturado o XHR");
-        });
-    	origOpen.apply(this, arguments);
-    };
-})();
+if(document.compiled){
+	includes.include();
+};
 
 // Código frente de caixa, nota fiscal e pista
 document.back.load_qtd_on_pdv();

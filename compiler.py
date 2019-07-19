@@ -1,11 +1,15 @@
 archive_list = {
-    1:"includes/back.js",
-    2:"includes/front.js",
-    3:"includes/sFetch.js",
-    4:"original.js"
+    1: "includes/back.js",
+    2: "includes/front.js",
+    3: "includes/sFetch.js",
+
+    4: "starters/start_watch_mouse.js",
+    5: "starters/start_watch_XMLHttpRequest.js"
 }
 
 compiled = open("compiled.js","w")
+
+compiled.write("document.compiled = true;")
 
 for number in archive_list:
     print(archive_list[number])
