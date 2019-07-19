@@ -2,7 +2,7 @@
 //Organizado v0.5
 
 class includes{ 
-	static PATH 	= "https://raw.githubusercontent.com/alvaroseparovich/bling-elshaddai-modifications/dev/"; 
+	static PATH 	= "https://raw.githubusercontent.com/alvaroseparovich/bling-elshaddai-modifications/" + document.elshaddai_bling_env + "/"; 
 	static Back 	= this.PATH + "includes/back.js";
 	static Front 	= this.PATH + "includes/front.js";
 	static SFetch 	= this.PATH + "includes/sFetch.js";
@@ -33,6 +33,9 @@ class includes{
 		this.append_to_head(this.SFetch);
 		this.append_to_head(this.Back);
 		this.append_to_head(this.Front);
+
+		console.log("");
+		console.log("Enviroment -> " + document.elshaddai_bling_env);
 	}
 }
 includes.include();
