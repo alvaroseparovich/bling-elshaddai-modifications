@@ -2,7 +2,6 @@ function Back(){
 	this.produtos_lookup_last_list = 0;
 	this.instance = 0;
 
-	this.show = new Front();
 	this.process = function(xhr){
 		//if( xhr.responseURL == "https://www.bling.com.br/services/frentes.caixas.server.php?f=obterProduto" /*&& document.URL == "https://www.bling.com.br/pdv.php"*/  ){
 		if( /(https:\/\/www\.bling\.com\.br\/services\/frentes\.caixas\.server\.php.*)/.test(xhr.responseURL) /*&& document.URL == "https://www.bling.com.br/pdv.php"*/  ){
@@ -163,12 +162,12 @@ function Back(){
 		//console.log(event.target);
 		//Verfica qual o contexto de execução para chamar o Objeto ou instancia corretamente.
 		if(this.constructor.name == "HTMLUListElement"){
-			//console.log( this.back.get_ui_id_4_focus_number());
-			number = this.back.get_ui_id_4_focus_number();
-			element = this.back.get_element_in_list(number);
+
+			number = document.back.get_ui_id_4_focus_number();
+			element = document.back.get_element_in_list(number);
 			id = element["id"];
 			if(id){
-				this.back.popUp_image_name_isbn_stock(id);
+				document.back.popUp_image_name_isbn_stock(id);
 			}
 		}else{
 			console.log( this.get_ui_id_4_focus_number() + "----------------- NOT HTML ELEMENT!" );
@@ -236,4 +235,6 @@ function Back(){
 			}
 		}
 	};
-} document.back = new Back(); document.back.active_popup_on_ui_id_4();
+} 
+document.back = new Back();
+document.back.active_popup_on_ui_id_4();

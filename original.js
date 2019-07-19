@@ -21,9 +21,10 @@ class includes{
 		console.log('URL: "' + url + '" -- was added in head')
 	}
 	static include = function(){
+		
+		this.append_to_head(this.SFetch);
 		this.append_to_head(this.Back);
 		this.append_to_head(this.Front);
-		this.append_to_head(this.SFetch);
 	}
 }
 includes.include();
