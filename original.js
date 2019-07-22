@@ -25,7 +25,7 @@ class includes{
 	}
 	static append_src_to_head = function(url){
 
-		var script = document.createElement("script"); 
+		var script = document.createElement("script");
 		script.src = url;
 		document.head.appendChild(script);
 

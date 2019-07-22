@@ -45,6 +45,8 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 		this.DOMObj = divTable;
 		return divTable;
 	};
+
+	
 	//=========================   GETers   =========================
 	//===============================================================
 	this.getCookie = function(cname="WSSID") {//code of https://www.w3schools.com/js/js_cookies.asp

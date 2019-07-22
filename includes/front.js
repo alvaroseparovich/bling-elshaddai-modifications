@@ -81,6 +81,7 @@ function Front(){
 		qtd.innerHTML = n;
 	}
 
+
 	//=================    POP   =====================
 	//================================================
 	this.pop_img_estoque = function(element){
@@ -144,6 +145,7 @@ function Front(){
 		popup.appendChild(element);
 	}
 
+
 	//=================   DELETE   ==================
 	//================================================
 	this.delete_popup = function(isbn = '#'){
@@ -176,4 +178,6 @@ function Front(){
 			document.head.appendChild(style);
 		}
 	}
-} front = new Front(); document.view = new Front();
+} 
+front = new Front(); 
+document.view = new Front();
