@@ -1,6 +1,6 @@
 //El Shaddai Code Help
 //V1.3
-
+// ---------------------- THE SNIPP CODE TO BE INJECTED IN THE PAGE ---------------------
 //Enviroment Declaration
 // enviroments = master & dev
 
