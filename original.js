@@ -1,16 +1,13 @@
-//AUXILIO PARA O ESTOQUE
-//Organizado v0.5
-
 class includes{ 
 	static PATH 	= "https://raw.githubusercontent.com/alvaroseparovich/bling-elshaddai-modifications/" + document.elshaddai_bling_env + "/"; 
 	static archives	= {
-		1: "includes/back.js",
-		2: "includes/front.js",
-		3: "includes/sFetch.js",
+		"1": "includes/back.js",
+		"2": "includes/front.js",
+		"3": "includes/sFetch.js",
 	
-		4: "starters/start_watch_mouse.js",
-		5: "starters/start_watch_XMLHttpRequest.js",
-		6: "starters/start_style_and_interface.js"
+		"4": "starters/start_watch_mouse.js",
+		"5": "starters/start_watch_XMLHttpRequest.js",
+		"6": "starters/start_style_and_interface.js"
 	};
 
 	static httpGet = function(theUrl){

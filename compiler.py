@@ -1,12 +1,12 @@
-archive_list = {
-    1: "includes/back.js",
-    2: "includes/front.js",
-    3: "includes/sFetch.js",
+import json
 
-    4: "starters/start_watch_mouse.js",
-    5: "starters/start_watch_XMLHttpRequest.js",
-    6: "starters/start_style_and_interface.js"
-}
+arch = open("original.js","r")
+arch = arch.read()
+arch = arch[arch.find("{")+1:-1].replace("\t","").replace("\n","")
+
+arc_list = arch[ arch.find("{") : arch.find("}")+1 ]
+print(arc_list)
+archive_list = json.loads(arc_list)
 
 compiled = open("compiled.js","w")
 
