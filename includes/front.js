@@ -1,6 +1,8 @@
 function Front(){
 	this.bd = document.querySelector("body");
 
+	//================   On PDV    ===================
+	//================================================
 	this.on_pdv_price = function(price, salePrice){
 		arrayElements = this.price_to_HTML_elements(price, salePrice, true);
 
@@ -24,7 +26,7 @@ function Front(){
 		if(detalhes_produto.querySelector("#price_element")){
 			detalhes_produto.removeChild(detalhes_produto.querySelector("#price_element"))
 		}
-		detalhes_produto.appendChild(priceElement);
+		detalhes_produto.appendChild(priceElement);	
 	}
 	this.price_to_HTML_elements = function(price, salePrice, returnArray = false){
 		divPriceElement = document.createElement("div"); 
@@ -50,7 +52,7 @@ function Front(){
 		if(returnArray){
 			return { 'salePriceElement': salePriceElement, 'priceElement': priceElement, 'percentageElement' : percentageElement, 'divPriceElement' : divPriceElement };
 		}else{
-			return divPriceElement;
+			return divPriceElement;		
 		}
 	}
 	this.on_pdv_estoque = function(DOMObj){
@@ -74,6 +76,13 @@ function Front(){
 		detalhes_produto = document.body.querySelector("#detalhes_produto");
 		detalhes_produto.appendChild(h2);
 	}
+	this.show_qtd_on_pdv = function(n){
+		qtd = document.querySelector("#button_qtd>#qtd");
+		qtd.innerHTML = n;
+	}
+
+	//=================    POP   =====================
+	//================================================
 	this.pop_img_estoque = function(element){
 		
 		if (typeof element == "string"){
@@ -112,10 +121,6 @@ function Front(){
 		deleteBtn = document.querySelector("#delete_button");
 		deleteBtn.innerHTML ='<h2 style="color: white; text-align:center;">{0}</h2>'.replace('{0}',nomeEditora) ;
 	}
-	this.show_qtd_on_pdv = function(n){
-		qtd = document.querySelector("#button_qtd>#qtd");
-		qtd.innerHTML = n;
-	}
 	this.popup = function(isbn = '#'){
 
 		if ( !this.delete_popup(isbn) ){
@@ -138,6 +143,9 @@ function Front(){
 		popup = this.bd.querySelector("#pop_info");
 		popup.appendChild(element);
 	}
+
+	//=================   DELETE   ==================
+	//================================================
 	this.delete_popup = function(isbn = '#'){
 
 
@@ -159,6 +167,8 @@ function Front(){
 			editora_on_pdv.parentElement.removeChild(editora_on_pdv);
 		}
 	}
+
+
 	this.product_green_space_to_click = function(){
 		if(/(.*Produtos - Bling.*)/.test( document.title )){
 			style = document.createElement("style");
