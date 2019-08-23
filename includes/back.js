@@ -150,22 +150,34 @@ function Back(){
 			
 			responseJson = document.sf.strToHTML( xhr.response );
 
-			saldo_atual 	= parseInt(responseJson.querySelector( '#saldo_atual_estoque'				 ).innerText);
-			separado 		= parseInt(responseJson.querySelector( '[t="totalEstoque"]>div:nth-child(9)' ).innerText);
+			saldo_atual 	= parseInt(responseJson.querySelector( '#saldo_atual_estoque'				 ).innerText.replace('.',''));
+			separado 		= parseInt(responseJson.querySelector( '[t="totalEstoque"]>div:nth-child(9)' ).innerText.replace('.',''));
 			
-			saldo_real = saldo_atual - separado ;
+			if(saldo_atual<0){
+				console.log("under 0") 
+				saldo_real = saldo_atual + ( - separado) ;
+			}else{
+				console.log("0 or above") 
+				saldo_real = saldo_atual - separado ;
+			}
 			
 			totais_na_tela = document.querySelector(".totais");
 
 			html_to_show_saldo_real = document.createElement("div");
 			html_to_show_saldo_real.classList.add("saldo_real");
 			html_to_show_saldo_real.innerHTML = saldo_real;
-			html_to_show_saldo_real.style = "order:-1;font-size:3em;background:#3faf6c;color:white;width:100%;text-align: center;";
 			
 			title_to_show = document.createElement("div");
 			title_to_show.classList.add("valor");
 			title_to_show.innerHTML = "Valor REAL";
-			title_to_show.style = "order:-3;background:#285a3c;color:white;width:100%;text-align:center;border-radius:3px 3px 0 0;";
+			if(saldo_real<1){
+				title_to_show.style = "order:-3;background:red;color:white;width:100%;text-align:center;border-radius:3px 3px 0 0;";
+				html_to_show_saldo_real.style = "order:-1;font-size:3em;background:red;color:white;width:100%;text-align: center;";
+			}
+			else{
+				title_to_show.style = "order:-3;background:#285a3c;color:white;width:100%;text-align:center;border-radius:3px 3px 0 0;";
+				html_to_show_saldo_real.style = "order:-1;font-size:3em;background:#3faf6c;color:white;width:100%;text-align: center;";
+			}
 
 			totais_na_tela.appendChild(html_to_show_saldo_real);
 			totais_na_tela.appendChild(title_to_show);
