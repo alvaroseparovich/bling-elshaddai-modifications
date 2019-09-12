@@ -148,7 +148,7 @@ function Back(){
 		} else
 		if(/(.*services\/estoques\.server\.php\?f=listarLancamentos.*)/.test(xhr.responseURL) ){
 			
-			response = document.sf.strToHTML( xhr.response );
+			responseJson = document.sf.strToHTML( xhr.response );
 
 			saldo_atual 	= parseInt(responseJson.querySelector( '#saldo_atual_estoque'				 ).innerText.replace('.',''));
 			separado 		= parseInt(responseJson.querySelector( '[t="totalEstoque"]>div:nth-child(9)' ).innerText.replace('.',''));
@@ -179,8 +179,8 @@ function Back(){
 				html_to_show_saldo_real.style = "order:-1;font-size:3em;background:#3faf6c;color:white;width:100%;text-align: center;";
 			}
 
-			(saldo_real)? document.view.show_on_estoque__real_value( saldo_real ) : document.view.show_on_estoque__real_value( "0" );
-
+			totais_na_tela.appendChild(html_to_show_saldo_real);
+			totais_na_tela.appendChild(title_to_show);
 		}
 	};
 	this.load_qtd_on_pdv = function(){

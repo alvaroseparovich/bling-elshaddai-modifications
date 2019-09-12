@@ -146,42 +146,6 @@ function Front(){
 	}
 
 
-	//=================    FRONT    ==================
-	//================================================
-	this.show_on_estoque__real_value = function(real_value){
-		title_to_show = this.__create_node__(
-			element = "div",
-			value = "Valor REAL", 
-			id = false,
-			classe = "valor", 
-			style ="order:-3;background:#285a3c;color:white;width:100%;text-align:center;border-radius:3px 3px 0 0;"
-		);
-		html_to_show_saldo_real = this.__create_node__(
-			element = "div",
-			value = real_value,
-			id = false,
-			classe="saldo_real",
-			style="order:-1;font-size:3em;background:#3faf6c;color:white;width:100%;text-align: center;"
-		);
-
-		let totais_na_tela = document.querySelector(".totais");
-		totais_na_tela.appendChild(title_to_show);
-		totais_na_tela.appendChild(html_to_show_saldo_real);
-	}
-
-	//=================   HELPERs   ==================
-	//================================================
-	this.__create_node__ = function( element="div" , value=false , id=false, classe=false , style=false ){
-		
-		creating_this_element = document.createElement(element);
-		(classe)	?creating_this_element.classList.add(classe):"";
-		(id)		?creating_this_element.id = 		id:"";
-		(value)		?creating_this_element.innerHTML = 	value:"";
-		(style)		?creating_this_element.style = 		style:"";
-
-		return creating_this_element;
-	}
-
 	//=================   DELETE   ==================
 	//================================================
 	this.delete_popup = function(isbn = '#'){
