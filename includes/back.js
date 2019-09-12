@@ -181,7 +181,6 @@ function Back(){
 
 			totais_na_tela.appendChild(html_to_show_saldo_real);
 			totais_na_tela.appendChild(title_to_show);
-
 		}
 	};
 	this.load_qtd_on_pdv = function(){

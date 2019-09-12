@@ -181,7 +181,6 @@ document.compiled = true;function Back(){
 
 			totais_na_tela.appendChild(html_to_show_saldo_real);
 			totais_na_tela.appendChild(title_to_show);
-
 		}
 	};
 	this.load_qtd_on_pdv = function(){
@@ -632,7 +631,7 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 
 document.onclick = function(e){
 	pop = document.querySelector("#pop_info");
-	if(e.target != pop && e.target.parentElement != pop && e.target.parentElement.parentElement.parentElement.parentElement.parentElement == document.querySelector("#datatable")){
+	if( /(.*bling\.com\.br\/produtos\.php.*)/.test(document.URL)  && e.target != pop && e.target.parentElement != pop && e.target.parentElement.parentElement.parentElement.parentElement.parentElement == document.querySelector("#datatable")){
 		console.log("This is the element");
 		document.back.process_clicked_item(e.target.parentElement);
 	}else if(pop){
@@ -674,5 +673,11 @@ $q = function(i){
 }
 $c = function(i){
     return console.log(i);
+}
+
+if ( /(.*Relatório\ detalhado\ de\ Controle\ de\ Caixa.*)/.test( document.querySelector("#base").textContent ) ){
+    inner_box_side = document.querySelector(".box-side").innerHTML;
+    inner_box_side += `<div class="col s6 offset-s3"><h5 class="white-text">Gerar Relatório</h5><form id="form_81356" class="appnitro" method="post" action="https://18e405oa5e.execute-api.us-east-1.amazonaws.com/dev/sum" target="_blank"><div class="form_description"><p>Preencha corretamente para acessar o resumo.</p></div>            <ul><li id="li_1 white"><label class="description" for="username" hidden="">Usuario </label><div><input id="username" name="username" class="element text small white" type="text" maxlength="255" placeholder="Usuario" value=""> </div> </li>   <li id="li_2"><label class="description" for="password" hidden="">Senha </label><div><input id="password" placeholder="Senha" name="password" class="element text small white" type="password" maxlength="255" value=""> </div> </li>   <li id="li_3"><div class=""><label class="description" for="date" hidden="">Date </label><span><input id="month" name="month" class="element text white col s5" size="2" maxlength="2" step="1" min="1" max="12" placeholder="12" value="12" type="number" style="/* width:40%; *//* margin: 0 0 0 0.57em; */"><label for="month" hidden="" class="active">MM</label></span><span><input id="year" name="year" class="element text white col s6 offset-s1" size="4" step="1" min="2000" max="3000" maxlength="4" placeholder="2019" value="2019" type="Number" style=""><label for="year" hidden="" class="active">YYYY</label></span></div></li><li><input type="hidden" name="form_id" value="81356"><i class="" style=""><i class="waves-button-input buttons btn-large waves-effect waves-light orange darken-4 waves-input-wrapper waves-input-wrapper" style=""><input id="saveForm" class="waves-button-input" type="submit" name="submit" value="Mostrar novo Relatório"></i></i></li></ul></form></div>`;
+    document.querySelector(".box-side").innerHTML += inner_box_side;
 }
 
