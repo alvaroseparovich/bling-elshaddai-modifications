@@ -7,7 +7,8 @@ class includes{
 	
 		"4": "starters/start_watch_mouse.js",
 		"5": "starters/start_watch_XMLHttpRequest.js",
-		"6": "starters/start_style_and_interface.js"
+		"6": "starters/start_style_and_interface.js",
+		"7": "starters/start_onload.js"
 	};
 
 	static httpGet = function(theUrl){
