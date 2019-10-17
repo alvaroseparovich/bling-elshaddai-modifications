@@ -174,7 +174,7 @@ function Front(){
 	this.product_green_space_to_click = function(){
 		if(/(.*Produtos - Bling.*)/.test( document.title )){
 			style = document.createElement("style");
-			style.innerHTML = "@media screen and (min-width:992px){.imagem_produto{max-height:350px!important}.box-content #datatable td:first-child,.box-content #datatable th:first-child,.box-content .datatable td:first-child,.box-content .datatable th:first-child{padding-left:40px;background:rgba(63,175,108,1);background:linear-gradient(to right,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%)}}"
+			style.innerHTML = "@media screen and (min-width:900px){ #datatable table.table-striped tbody tr td div.input-checkbox {padding-left: 45px;background:rgba(63,175,108,1);background:linear-gradient(to right,rgba(63,175,108,1) 0,rgba(63,175,108,1) 47%,rgba(63,175,108,0) 47%,rgba(63,175,108,0) 48%,rgba(255,255,255,0) 49%,rgba(255,255,255,0) 100%); height: 24px;} .imagem_produto{max-height:350px!important} table tbody td:first-child{padding-left:40px;}}"
 			document.head.appendChild(style);
 		}
 	}
