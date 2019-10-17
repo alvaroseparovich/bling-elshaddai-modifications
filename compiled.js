@@ -22,13 +22,11 @@ document.compiled = true;function Back(){
 		show.pop_isbn_product(isbn);
 	};
 	this.process_pop_stock_request = function(response){
-		HTMLStoque = document.sf.processHTMLStoque( document.sf.strToXML( response ) );
+		HTMLStoque = document.sf.processHTMLStoque( response );
 		document.view.pop_stock_product(HTMLStoque);
 	};
 	this.process_get_estoque_request = function(str){
-
-		//console.log("process_get_estoque_request(" + str + ")");
-		HTMLStoque = document.sf.processHTMLStoque( document.sf.strToXML( str ) );
+		HTMLStoque = document.sf.processHTMLStoque( str );
 		document.view.on_pdv_estoque(HTMLStoque);
 	};
 	this.process_price_multiloja_request = function(response){
@@ -343,13 +341,16 @@ function Front(){
 	}
 	this.on_pdv_estoque = function(DOMObj){
 		
-		DOMObj.style = "position:absolute;right:0;width:auto;top:20px;";
+		DOMObj.style = "position:absolute;right:0;width:auto;top:25px;font-size:1.1em;padding-right:15px;";
 		DOMObj.classList.add("without-green");
-		detalhes_produto = this.bd.querySelector("#detalhes_produto");
-		if(detalhes_produto.querySelector(".datatable")){
-			detalhes_produto.removeChild(detalhes_produto.querySelector(".datatable"))
+		detalhes_produto = document.querySelector("#detalhes_produto");
+		try{
+			detalhes_produto.removeChild(detalhes_produto.querySelector(".without-green"));
+		}finally{
+			detalhes_produto.appendChild(DOMObj);
 		}
-		detalhes_produto.appendChild(DOMObj);
+
+		//detalhes_produto.appendChild(DOMObj);
 	}
 	this.on_pdv_editora = function(nomeEditora){
 		console.log(nomeEditora);
@@ -460,7 +461,7 @@ function Front(){
 	this.product_green_space_to_click = function(){
 		if(/(.*Produtos - Bling.*)/.test( document.title )){
 			style = document.createElement("style");
-			style.innerHTML = "@media screen and (min-width:900px){ td.context-menu-item{padding-right:50px!important;background:rgba(255,255,255,1);background:-moz-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-webkit-gradient(left top,right top,color-stop(0%,rgba(255,255,255,1)),color-stop(53%,rgba(255,255,255,1)),color-stop(53%,rgba(63,174,107,1)),color-stop(100%,rgba(63,174,107,1)));background:-webkit-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-o-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-ms-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#3fae6b',GradientType=1)} .imagem_produto{max-height:350px!important} table tbody td:first-child{padding-left:40px;}}"
+			style.innerHTML = "@media screen and (min-width:900px){ td.context-menu-item{padding-right:50px!important;background:rgba(255,255,255,1);background:-moz-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-webkit-gradient(left top,right top,color-stop(0%,rgba(255,255,255,1)),color-stop(53%,rgba(255,255,255,1)),color-stop(53%,rgba(63,174,107,1)),color-stop(100%,rgba(63,174,107,1)));background:-webkit-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-o-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-ms-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#3fae6b',GradientType=1)} .imagem_produto{max-height:350px!important}} #tabela-saldo-deposito{width:100%;margin:20px 0 0;}tr:nth-child(even){background: white;}"
 			document.head.appendChild(style);
 		}
 	}
@@ -504,17 +505,23 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 	  this.DOMObj = div; 
 	  return div; 
 	};
-	this.processHTMLStoque = function(parsedXML = this.parsedXML){
+	this.processHTMLStoque = function(text = this.parsedXML){
 		//@ parsedXML = XML
 		//Return -> HTML
-
-		innerHTMLstr = parsedXML.documentElement.querySelector("[t='totalEstoque']").innerHTML;
-		numberStartersCharacteres = 9;
-		subHTMLStr = innerHTMLstr.substr(numberStartersCharacteres, innerHTMLstr.length - (numberStartersCharacteres + 3));
-		div = this.strToHTML(subHTMLStr);
-		divTable = div.querySelector("table.datatable")
-		this.DOMObj = divTable;
-		return divTable;
+		
+		console.log(text);
+		json = JSON.parse(text);
+		Jsaldos = json.totais.saldosPorDeposito;
+		tableText = `<table id="tabela-saldo-deposito"> <thead><tr><th>Depósito</th><th style="float: right;">Saldo</th></tr></thead><tbody>`;
+		Jsaldos.forEach(e=>{
+			tableText += "<tr><td title>" + e.descricao + "</td>";
+			tableText += "<td align='right' title>" + parseInt(e.saldo) + "</td></tr>";
+		})
+		tableText += "</tbody></table>";
+		element = document.createElement("div");
+		element.innerHTML = tableText;
+		this.DOMObj = element;
+		return element;
 	};
 
 	
@@ -539,7 +546,11 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 			"headers":{
 				"accept":"*/*",
 				"accept-language":"pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+				"cache-control":"no-cache",
 				"content-type":"application/x-www-form-urlencoded",
+				"pragma":"no-cache",
+				"sec-fetch-mode":"cors",
+				"sec-fetch-site":"same-origin",
 				"session-token":cookie
 			},
 			"referrer":"https://www.bling.com.br/estoque.php?",

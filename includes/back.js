@@ -22,13 +22,11 @@ function Back(){
 		show.pop_isbn_product(isbn);
 	};
 	this.process_pop_stock_request = function(response){
-		HTMLStoque = document.sf.processHTMLStoque( document.sf.strToXML( response ) );
+		HTMLStoque = document.sf.processHTMLStoque( response );
 		document.view.pop_stock_product(HTMLStoque);
 	};
 	this.process_get_estoque_request = function(str){
-
-		//console.log("process_get_estoque_request(" + str + ")");
-		HTMLStoque = document.sf.processHTMLStoque( document.sf.strToXML( str ) );
+		HTMLStoque = document.sf.processHTMLStoque( str );
 		document.view.on_pdv_estoque(HTMLStoque);
 	};
 	this.process_price_multiloja_request = function(response){

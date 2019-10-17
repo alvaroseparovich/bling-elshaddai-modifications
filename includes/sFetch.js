@@ -33,17 +33,23 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 	  this.DOMObj = div; 
 	  return div; 
 	};
-	this.processHTMLStoque = function(parsedXML = this.parsedXML){
+	this.processHTMLStoque = function(text = this.parsedXML){
 		//@ parsedXML = XML
 		//Return -> HTML
-
-		innerHTMLstr = parsedXML.documentElement.querySelector("[t='totalEstoque']").innerHTML;
-		numberStartersCharacteres = 9;
-		subHTMLStr = innerHTMLstr.substr(numberStartersCharacteres, innerHTMLstr.length - (numberStartersCharacteres + 3));
-		div = this.strToHTML(subHTMLStr);
-		divTable = div.querySelector("table.datatable")
-		this.DOMObj = divTable;
-		return divTable;
+		
+		console.log(text);
+		json = JSON.parse(text);
+		Jsaldos = json.totais.saldosPorDeposito;
+		tableText = `<table id="tabela-saldo-deposito"> <thead><tr><th>Depósito</th><th style="float: right;">Saldo</th></tr></thead><tbody>`;
+		Jsaldos.forEach(e=>{
+			tableText += "<tr><td title>" + e.descricao + "</td>";
+			tableText += "<td align='right' title>" + parseInt(e.saldo) + "</td></tr>";
+		})
+		tableText += "</tbody></table>";
+		element = document.createElement("div");
+		element.innerHTML = tableText;
+		this.DOMObj = element;
+		return element;
 	};
 
 	
@@ -68,7 +74,11 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 			"headers":{
 				"accept":"*/*",
 				"accept-language":"pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+				"cache-control":"no-cache",
 				"content-type":"application/x-www-form-urlencoded",
+				"pragma":"no-cache",
+				"sec-fetch-mode":"cors",
+				"sec-fetch-site":"same-origin",
 				"session-token":cookie
 			},
 			"referrer":"https://www.bling.com.br/estoque.php?",
