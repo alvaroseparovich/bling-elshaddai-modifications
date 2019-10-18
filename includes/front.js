@@ -57,7 +57,7 @@ function Front(){
 	}
 	this.on_pdv_estoque = function(DOMObj){
 		
-		DOMObj.style = "position:absolute;right:0;width:auto;top:25px;font-size:1.1em;padding-right:15px;";
+		DOMObj.style = "position:absolute;right:0;width:auto;top:42px;font-size:1.1em;padding-right:15px;";
 		DOMObj.classList.add("without-green");
 		detalhes_produto = document.querySelector("#detalhes_produto");
 		try{
@@ -177,7 +177,7 @@ function Front(){
 	this.product_green_space_to_click = function(){
 		if(/(.*Produtos - Bling.*)/.test( document.title )){
 			style = document.createElement("style");
-			style.innerHTML = "@media screen and (min-width:900px){ td.context-menu-item{padding-right:50px!important;background:rgba(255,255,255,1);background:-moz-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-webkit-gradient(left top,right top,color-stop(0%,rgba(255,255,255,1)),color-stop(53%,rgba(255,255,255,1)),color-stop(53%,rgba(63,174,107,1)),color-stop(100%,rgba(63,174,107,1)));background:-webkit-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-o-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-ms-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#3fae6b',GradientType=1)} .imagem_produto{max-height:350px!important}} #tabela-saldo-deposito{width:100%;margin:20px 0 0;}tr:nth-child(even){background: white;}"
+			style.innerHTML = "@media screen and (min-width:900px){ td.context-menu-item{padding-right:50px!important;background:rgba(255,255,255,1);background:-moz-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-webkit-gradient(left top,right top,color-stop(0%,rgba(255,255,255,1)),color-stop(53%,rgba(255,255,255,1)),color-stop(53%,rgba(63,174,107,1)),color-stop(100%,rgba(63,174,107,1)));background:-webkit-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-o-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-ms-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#3fae6b',GradientType=1)} .imagem_produto{max-height:350px!important}} #tabela-saldo-deposito{width:100%;margin:20px 0 0;}tr:nth-child(even){background: white;}table.table-striped{table-layout: auto!important;}"
 			document.head.appendChild(style);
 		}
 	}

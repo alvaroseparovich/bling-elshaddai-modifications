@@ -37,7 +37,6 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 		//@ parsedXML = XML
 		//Return -> HTML
 		
-		console.log(text);
 		json = JSON.parse(text);
 		Jsaldos = json.totais.saldosPorDeposito;
 		tableText = `<table id="tabela-saldo-deposito"> <thead><tr><th>Depósito</th><th style="float: right;">Saldo</th></tr></thead><tbody>`;
