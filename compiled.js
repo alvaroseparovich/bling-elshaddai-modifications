@@ -341,7 +341,7 @@ function Front(){
 	}
 	this.on_pdv_estoque = function(DOMObj){
 		
-		DOMObj.style = "position:absolute;right:0;width:auto;top:25px;font-size:1.1em;padding-right:15px;";
+		DOMObj.style = "position:absolute;right:0;width:auto;top:42px;font-size:1.1em;padding-right:15px;";
 		DOMObj.classList.add("without-green");
 		detalhes_produto = document.querySelector("#detalhes_produto");
 		try{
@@ -461,7 +461,7 @@ function Front(){
 	this.product_green_space_to_click = function(){
 		if(/(.*Produtos - Bling.*)/.test( document.title )){
 			style = document.createElement("style");
-			style.innerHTML = "@media screen and (min-width:900px){ td.context-menu-item{padding-right:50px!important;background:rgba(255,255,255,1);background:-moz-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-webkit-gradient(left top,right top,color-stop(0%,rgba(255,255,255,1)),color-stop(53%,rgba(255,255,255,1)),color-stop(53%,rgba(63,174,107,1)),color-stop(100%,rgba(63,174,107,1)));background:-webkit-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-o-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-ms-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#3fae6b',GradientType=1)} .imagem_produto{max-height:350px!important}} #tabela-saldo-deposito{width:100%;margin:20px 0 0;}tr:nth-child(even){background: white;}"
+			style.innerHTML = "@media screen and (min-width:900px){ td.context-menu-item{padding-right:50px!important;background:rgba(255,255,255,1);background:-moz-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-webkit-gradient(left top,right top,color-stop(0%,rgba(255,255,255,1)),color-stop(53%,rgba(255,255,255,1)),color-stop(53%,rgba(63,174,107,1)),color-stop(100%,rgba(63,174,107,1)));background:-webkit-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-o-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:-ms-linear-gradient(left,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 53%,rgba(63,174,107,1) 53%,rgba(63,174,107,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#3fae6b',GradientType=1)} .imagem_produto{max-height:350px!important}} #tabela-saldo-deposito{width:100%;margin:20px 0 0;}tr:nth-child(even){background: white;}table.table-striped{table-layout: auto!important;}"
 			document.head.appendChild(style);
 		}
 	}
@@ -509,7 +509,6 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 		//@ parsedXML = XML
 		//Return -> HTML
 		
-		console.log(text);
 		json = JSON.parse(text);
 		Jsaldos = json.totais.saldosPorDeposito;
 		tableText = `<table id="tabela-saldo-deposito"> <thead><tr><th>Depósito</th><th style="float: right;">Saldo</th></tr></thead><tbody>`;
@@ -641,8 +640,8 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 
 
 document.onclick = function(e){
-	console.log(e.target.parentElement);
-	console.log(e.target.parentElement.id);
+	/*console.log(e.target.parentElement);
+	console.log(e.target.parentElement.id);*/
 	pop = document.querySelector("#pop_info");
 	
 	if( /(.*bling\.com\.br\/produtos\.php.*)/.test(document.URL)  && e.target != pop && e.target.parentElement != pop && Number.isInteger(parseInt(e.target.parentElement.id ) ) ){
