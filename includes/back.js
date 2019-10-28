@@ -91,7 +91,7 @@ function Back(){
 		
 		responseXML = document.sf.strToXML(response);
 
-		arrTxt = responseXML.querySelector("cmd:nth-child(90)").innerHTML;
+		arrTxt = responseXML.querySelector("cmd:nth-child(92)").innerHTML;
 		arrTxt = arrTxt.substr(24,arrTxt.length-34);
 		arrEditoras = JSON.parse(arrTxt);
 

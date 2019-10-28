@@ -172,8 +172,6 @@ function Front(){
 			editora_on_pdv.parentElement.removeChild(editora_on_pdv);
 		}
 	}
-
-
 	this.product_green_space_to_click = function(){
 		if(/(.*Produtos - Bling.*)/.test( document.title )){
 			style = document.createElement("style");
