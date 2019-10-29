@@ -92,8 +92,14 @@ document.compiled = true;function Back(){
 		responseXML = document.sf.strToXML(response);
 
 		arrTxt = responseXML.querySelector("cmd:nth-child(92)").innerHTML;
-		arrTxt = arrTxt.substr(24,arrTxt.length-34);
-		arrEditoras = JSON.parse(arrTxt);
+		console.log(arrTxt);
+		arrTxt1 = arrTxt.substr(24,arrTxt.search(/, 0\)]]>/)-24);
+		if(arrTxt1){
+			 arrEditoras = JSON.parse(arrTxt1);
+			}else{
+			arrTxt = arrTxt.substr(24,arrTxt.search(/, 0, 1\)]]>/)-24);
+			arrEditoras = JSON.parse(arrTxt);
+		}
 
 		document.resp = arrEditoras;
 
