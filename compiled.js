@@ -92,7 +92,7 @@ document.compiled = true;function Back(){
 		responseXML = document.sf.strToXML(response);
 
 		arrTxt = responseXML.querySelector("cmd:nth-child(92)").innerHTML;
-		console.log(arrTxt);
+
 		arrTxt1 = arrTxt.substr(24,arrTxt.search(/, 0\)]]>/)-24);
 		if(arrTxt1){
 			 arrEditoras = JSON.parse(arrTxt1);
@@ -153,9 +153,9 @@ document.compiled = true;function Back(){
 		if(/(.*services\/estoques\.server\.php\?f=listarLancamentos.*)/.test(xhr.responseURL) ){
 			
 			responseJson = document.sf.strToHTML( xhr.response );
-
-			saldo_atual 	= parseInt(responseJson.querySelector( '#saldo_atual_estoque'				 ).innerText.replace('.',''));
-			separado 		= parseInt(responseJson.querySelector( '[t="totalEstoque"]>div:nth-child(9)' ).innerText.replace('.',''));
+			saldo_atual 	= parseInt(document.querySelector( '#saldo-geral > .totais > .info-value:nth-child(6)').innerText.replace('.',''));
+			try{separado 	= parseInt(document.querySelector( '#saldo-geral > .totais > div > .info-value' ).innerText.replace('.',''));}
+			catch{separado = 0}
 			
 			if(saldo_atual<0){
 				console.log("under 0") 
