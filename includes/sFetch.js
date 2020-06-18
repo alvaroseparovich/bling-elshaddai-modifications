@@ -28,10 +28,10 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 		} 
 	};
 	this.strToHTML = function ( htmlString = this.response ) {
-	  var div = document.createElement('div'); 
-	  div.innerHTML = htmlString.trim();
-	  this.DOMObj = div; 
-	  return div; 
+    var div = document.createElement('div'); 
+    div.innerHTML = htmlString.trim();
+    this.DOMObj = div; 
+    return div; 
 	};
 	this.processHTMLStoque = function(text = this.parsedXML){
 		//@ parsedXML = XML
@@ -55,16 +55,16 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 	//=========================   GETers   =========================
 	//===============================================================
 	this.getCookie = function(cname="WSSID") {//code of https://www.w3schools.com/js/js_cookies.asp
-	  var name = cname + "=";
-	  var decodedCookie = decodeURIComponent(document.cookie);
-	  var ca = decodedCookie.split(';');
-	  for(var i = 0; i <ca.length; i++) {
-	  	var c = ca[i];
-	  	while (c.charAt(0) == ' ') {c = c.substring(1);}
-	  	if (c.indexOf(name) == 0) {
-	  		return c.substring(name.length, c.length);
-	  	}
-	  }return "";
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {c = c.substring(1);}
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }return "";
 	};
 	this.getStockById = function( productID = "2817352204" , handle_response = 0){
 		var cookie = this.getCookie();
