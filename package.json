@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "Modifications to help elshaddai balconist",
   "main": "original.js",
+  "scripts": {
+    "deploy": "node deploy.js",
+    "ddev": "node deploy.js"
+  },
   "repository": "https://github.com/alvaroseparovich/bling-elshaddai-modifications.git",
   "author": "alvaroseparovich <alvasepro@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.699.0"
+  }
 }
