@@ -1,0 +1,9 @@
+{
+  "name": "bling-elshaddai-modifications",
+  "version": "1.0.0",
+  "description": "Modifications to help elshaddai balconist",
+  "main": "original.js",
+  "repository": "https://github.com/alvaroseparovich/bling-elshaddai-modifications.git",
+  "author": "alvaroseparovich <alvasepro@gmail.com>",
+  "license": "MIT"
+}
