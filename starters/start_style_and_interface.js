@@ -15,8 +15,8 @@ style.innerHTML += ".totais{display:flex;flex-direction:column;}";
 document.head.appendChild(style);
 
 $q = function(i){
-    return document.querySelector(i);
+  return document.querySelector(i);
 }
 $c = function(i){
-    return console.log(i);
+  return console.log(i);
 }
