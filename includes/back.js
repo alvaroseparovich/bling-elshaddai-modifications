@@ -87,12 +87,13 @@ function Back(){
     responseXML = document.sf.strToXML(response);
 
     arrTxt = responseXML.querySelector("cmd:nth-child(92)").innerHTML;
-
-    arrTxt1 = arrTxt.substr(24,arrTxt.search(/, 0\)]]>/)-24);
+    // console.log(arrTxt)
+    startStringLength = 24
+    arrTxt1 = arrTxt.substr(startStringLength,arrTxt.search(/, 0\)]]>/)-startStringLength);
     if(arrTxt1){
       arrEditoras = JSON.parse(arrTxt1);
     }else{
-      arrTxt = arrTxt.substr(24,arrTxt.search(/, 0, 1\)]]>/)-24);
+      arrTxt = arrTxt.substr(startStringLength,arrTxt.search(/, 0, 1\)]]>/)-startStringLength);
       arrEditoras = JSON.parse(arrTxt);
     }
 
