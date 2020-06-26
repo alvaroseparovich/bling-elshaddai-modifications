@@ -103,13 +103,13 @@ function sFetch(id = 0, type = 0, handle_response = 0) {
 			},
 				"referrer":"https://www.bling.com.br/pdv.php",
 				"referrerPolicy":"no-referrer-when-downgrade",
-				"body":"xajax=obterProduto&xajaxs="+cookie+"&xajaxr=1560444290700&xajaxargs[]=%3Cxjxobj%3E%3Ce%3E%3Ck%3Eid%3C%2Fk%3E%3Cv%3E"+productID+"%3C%2Fv%3E%3C%2Fe%3E%3Ce%3E%3Ck%3EidLoja%3C%2Fk%3E%3Cv%3E203331767%3C%2Fv%3E%3C%2Fe%3E%3Ce%3E%3Ck%3EidVenda%3C%2Fk%3E%3Cv%3E0%3C%2Fv%3E%3C%2Fe%3E%3Ce%3E%3Ck%3EidDeposito%3C%2Fk%3E%3Cv%3E5888049670%3C%2Fv%3E%3C%2Fe%3E%3C%2Fxjxobj%3E",
+				"body":"xajax=obterProdutoFrenteCaixa&xajaxs="+cookie+"&xajaxr=1560444290700&xajaxargs[]=%3Cxjxobj%3E%3Ce%3E%3Ck%3Eid%3C%2Fk%3E%3Cv%3E"+productID+"%3C%2Fv%3E%3C%2Fe%3E%3Ce%3E%3Ck%3EidLoja%3C%2Fk%3E%3Cv%3E203331767%3C%2Fv%3E%3C%2Fe%3E%3Ce%3E%3Ck%3EidVenda%3C%2Fk%3E%3Cv%3E0%3C%2Fv%3E%3C%2Fe%3E%3Ce%3E%3Ck%3EidDeposito%3C%2Fk%3E%3Cv%3E5888049670%3C%2Fv%3E%3C%2Fe%3E%3C%2Fxjxobj%3E",
 				"method":"POST",
 			"mode":"cors"};
 		if(handle_response){
-			this.fetch("https://www.bling.com.br/services/frentes.caixas.server.php?f=obterProduto", header, handle_response);
+			this.fetch("https://www.bling.com.br/services/frentes.caixas.server.php?f=obterProdutoFrenteCaixa", header, handle_response);
 		}else{
-			this.fetch("https://www.bling.com.br/services/frentes.caixas.server.php?f=obterProduto", header);
+			this.fetch("https://www.bling.com.br/services/frentes.caixas.server.php?f=obterProdutoFrenteCaixa", header);
 		}
 	};
 	this.getMultilojaPrice = function( productID = "2817352204" , handle_response = 0){
