@@ -11,6 +11,6 @@
   "author": "alvaroseparovich <alvasepro@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.699.0"
+    "aws-sdk": "^2.814.0"
   }
 }
